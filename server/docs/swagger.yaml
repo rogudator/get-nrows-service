@@ -1,0 +1,53 @@
+definitions:
+  transport.errorResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  transport.getRowsResponse:
+    properties:
+      data:
+        items:
+          type: string
+        type: array
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: service to get n rows from table
+  title: n Rows Service
+  version: "1.0"
+paths:
+  /rows:
+    get:
+      consumes:
+      - application/json
+      description: get n rows
+      operationId: get-all-lists
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transport.getRowsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/transport.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/transport.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/transport.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/transport.errorResponse'
+      summary: Get n Rows
+      tags:
+      - rows
+swagger: "2.0"

@@ -1,0 +1,20 @@
+services:
+  server:
+    networks:
+      - net
+    build:
+      context: /server
+      dockerfile: dockerfile
+    ports:
+      - 8080:8080
+  client:
+    depends_on:
+      - server
+    networks:
+      - net
+    build:
+      context: /client
+      dockerfile: dockerfile
+
+networks:
+  net:
